@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxhdbhcgaj5o6"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="Script" path="res://scenes/marker.gd" id="1_tn3y7"]
+[ext_resource type="Script" path="res://src/marker.gd" id="1_tn3y7"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_vcjt3"]
 

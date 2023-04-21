@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbsge55lbtipv"]
+[gd_scene load_steps=9 format=3 uid="uid://tg7g3ifl2ihb"]
 
 [ext_resource type="PackedScene" uid="uid://dtd1hmqjd7303" path="res://scenes/earth_scene.tscn" id="1_31fs6"]
 [ext_resource type="Script" path="res://src/globe.gd" id="1_ofnld"]
-[ext_resource type="PackedScene" uid="uid://cxhdbhcgaj5o6" path="res://scenes/marker.tscn" id="2_gcll6"]
-[ext_resource type="Script" path="res://scenes/CameraManager.gd" id="3_lekdu"]
-[ext_resource type="Script" path="res://scenes/DataManager.gd" id="5_avye4"]
+[ext_resource type="PackedScene" path="res://scenes/marker.tscn" id="2_gcll6"]
+[ext_resource type="Script" path="res://src/CameraManager.gd" id="3_8x4wl"]
+[ext_resource type="Script" path="res://src/DataManager.gd" id="5_3j5ia"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3npwa"]
 sky_top_color = Color(0.0823529, 0, 0.709804, 1)
@@ -20,9 +20,8 @@ background_mode = 2
 sky = SubResource("Sky_5s1ka")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_sky_contribution = 0.15
+ambient_light_sky_contribution = 0.27
 reflected_light_source = 2
-fog_enabled = true
 fog_light_color = Color(0.470588, 0.505882, 0.560784, 1)
 fog_light_energy = 0.05
 fog_sun_scatter = 0.38
@@ -39,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.3621, 0, 0)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 70, 0, 0)
 fov = 85.2
 near = 0.032
-script = ExtResource("3_lekdu")
+script = ExtResource("3_8x4wl")
 
 [node name="earth_scene" parent="." instance=ExtResource("1_31fs6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8147e-06)
@@ -48,4 +47,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8147e-06)
 environment = SubResource("Environment_glixn")
 
 [node name="DataManager" type="Node3D" parent="."]
-script = ExtResource("5_avye4")
+script = ExtResource("5_3j5ia")
