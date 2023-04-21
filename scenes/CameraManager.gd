@@ -8,6 +8,11 @@ var phi = 0
 var radius = 70
 var globe_radius = 42
 
+func _ready():
+	var init_angle = calc_sphere_angle(position, radius)
+	theta = init_angle.x
+	phi = init_angle.y
+
 func _process(delta):
 	look_at(Vector3.ZERO)
 
@@ -30,23 +35,22 @@ func _input(event: InputEvent) -> void:
 			set_camera_pos_angle(angle)
 
 func set_camera_pos_angle(_angle):
-	
-	
-	var newPos = Vector3(radius * cos(_angle.x) * sin(_angle.y), radius * cos(_angle.y), radius * sin(_angle.x) * sin(_angle.y))
-	
-	#tween.tween_property(self, "position", newPos, 0.5)
-	position = newPos
+	position = calc_sphere_pos(_angle)
 	theta = _angle.x
 	phi = _angle.y
 	
+func calc_sphere_pos(_angle):
+		var newPos = Vector3(radius * cos(_angle.x) * sin(_angle.y), radius * cos(_angle.y), radius * sin(_angle.x) * sin(_angle.y))
+		return newPos
+func calc_sphere_angle(_pos, _radius):
+	var _theta = atan2(_pos.z, _pos.x)
+	var _phi = acos(_pos.y / _radius)
+	return Vector2(_theta, _phi)
+
 func set_angle_to_marker(marker_pos: Vector3):
-	print('miauw')
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
-	var markerTheta = atan2(marker_pos.z, marker_pos.x)
-	var markerPhi = acos(marker_pos.y / globe_radius)
-	var markerAngle = Vector2(markerTheta, markerPhi)
+	var markerAngle = calc_sphere_angle(marker_pos, globe_radius)
 	tween.tween_method(set_camera_pos_angle, Vector2(theta,phi), markerAngle, 0.5)
-	#set_camera_pos_angle(markerTheta, markerPhi)
 

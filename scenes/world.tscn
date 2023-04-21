@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbsge55lbtipv"]
+[gd_scene load_steps=9 format=3 uid="uid://dbsge55lbtipv"]
 
 [ext_resource type="PackedScene" uid="uid://dtd1hmqjd7303" path="res://scenes/earth_scene.tscn" id="1_31fs6"]
 [ext_resource type="Script" path="res://src/globe.gd" id="1_ofnld"]
 [ext_resource type="PackedScene" uid="uid://cxhdbhcgaj5o6" path="res://scenes/marker.tscn" id="2_gcll6"]
 [ext_resource type="Script" path="res://scenes/CameraManager.gd" id="3_lekdu"]
+[ext_resource type="Script" path="res://scenes/DataManager.gd" id="5_avye4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3npwa"]
 sky_top_color = Color(0.0823529, 0, 0.709804, 1)
@@ -45,3 +46,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.8147e-06)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_glixn")
+
+[node name="DataManager" type="Node3D" parent="."]
+script = ExtResource("5_avye4")
