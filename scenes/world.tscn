@@ -94,20 +94,25 @@ size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_duya0")
 
 [node name="CityLabel" type="RichTextLabel" parent="UI/InfoPanel/NamePanel"]
-layout_mode = 2
-offset_left = 19.0
-offset_top = 1.0
-offset_right = 358.0
-offset_bottom = 46.0
+layout_mode = 1
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 376.0
+offset_bottom = 74.0
 theme = ExtResource("6_uq2bt")
 text = "London"
 
 [node name="CountryLabel" type="RichTextLabel" parent="UI/InfoPanel/NamePanel"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 43.0
-offset_right = 347.0
-offset_bottom = 98.0
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -52.0
+offset_right = 327.0
+offset_bottom = -8.0
+grow_vertical = 0
 theme = ExtResource("6_uq2bt")
 theme_override_font_sizes/normal_font_size = 19
 text = "United Kingdom"

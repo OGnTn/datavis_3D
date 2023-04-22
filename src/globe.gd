@@ -16,7 +16,6 @@ var ranges
 var filter_containers = {}
 var dragging_slider = false
 
-
 @onready
 var info_panel = $UI/InfoPanel
 
