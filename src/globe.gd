@@ -1,6 +1,6 @@
 extends Node3D
 var city_marker_file = preload("res://scenes/marker.tscn")
-var info_label_file = preload("res://scenes/info_container.tscn")
+var info_label_file = preload("res://scenes/info_container_bar.tscn")
 var filter_container_file = preload("res://scenes/filter_container.tscn")
 #var earth = $earth_scene
 var globe_radius = 42.5
@@ -23,7 +23,7 @@ var info_panel = $UI/InfoPanel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Camera3D.connect("moved", _on_camera_moved)
-	for i in range(len(keys) - 5):
+	for i in range(3,len(keys) - 2):
 		var info_label = info_label_file.instantiate()
 		$UI/InfoPanel/CostContainer/CostPanel.add_child(info_label)
 		var filter_container = filter_container_file.instantiate()
@@ -83,7 +83,7 @@ func _on_marker_focused(marker: Node3D, marker_pos: Vector3, datadict: Dictionar
 	info_panel.visible = true
 	current_marker = marker
 	marker.set_namelabel(true)
-	set_marker_ui(datadict)
+	set_marker_ui(datadict, marker)
 	state = state_set.FOCUSED
 func _on_camera_moved():
 	if state == state_set.FOCUSED:
@@ -93,17 +93,49 @@ func _on_camera_moved():
 		current_marker.set_namelabel(false)
 		emit_signal("unfocused")
 		
-func set_marker_ui(dict: Dictionary):
+func set_marker_ui(dict: Dictionary, marker):
 	$UI/InfoPanel/NamePanel/CityLabel.text = dict['city']
 	$UI/InfoPanel/NamePanel/CountryLabel.text = dict['country']
 	$UI/FilterPanel.visible = false
 	var containers = $UI/InfoPanel/CostContainer/CostPanel.get_children()
-	for i in range(1, len(containers)):
-		var value = dict.values()[i + 2]
-		var key = dict.keys()[i+2]
-		var labels = containers[i].get_children()
+	for i in range(3, len(containers) + 2):
+		var value = dict.values()[i]
+		var key = dict.keys()[i]
+		var labels = containers[i - 2].get_children()[0].get_children()
+		var bar = containers[i - 2].get_children()[1].get_children()[0]
+		var bar_avg:ProgressBar = containers[i - 2].get_children()[1].get_children()[1]
+		
+		bar.max_value = ranges[key][0]
+		bar.min_value = ranges[key][1]
+		bar.value = float(value)
+		
+		var stylebox: StyleBoxFlat = bar.get("theme_override_styles/fill").duplicate()
+		bar.set("theme_override_styles/fill", stylebox)
+		
+		var val = float(value)
+		var min_value = ranges[key][1]
+		var max_value = ranges[key][0]
+		var avg_value = ranges[key][2]
+		
+		var scaled_min_value = (min_value - min_value) / (max_value - min_value)
+		var scaled_max_value = (max_value - min_value) / (max_value - min_value)
+		var scaled_avg_value = (avg_value - min_value) / (max_value - min_value)
+		var scaled_value = (val - min_value) / (max_value - min_value)
+		
+		var gr: Gradient = load("res://assets/themes/bar_gradient.tres")
+		gr.set_offset(1, scaled_avg_value)
+		stylebox.bg_color = gr.sample(scaled_value)
+		
+		bar_avg.max_value = ranges[key][0]
+		bar_avg.min_value = ranges[key][1]
+		bar_avg.value = ranges[key][2]
+		
 		labels[0].text = key
 		labels[1].text = value
+
+func calculate_lerp(min_val, max_val, avg_val, val):
+	var v = 2 * (val - avg_val) /(max_val - min_val) + 1
+	return (v + 1)/2
 
 func set_filter(filter_dict: Dictionary):
 	for marker in markers:

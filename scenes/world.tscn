@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tg7g3ifl2ihb"]
+[gd_scene load_steps=12 format=3 uid="uid://tg7g3ifl2ihb"]
 
 [ext_resource type="PackedScene" uid="uid://dtd1hmqjd7303" path="res://scenes/earth_scene.tscn" id="1_31fs6"]
 [ext_resource type="Script" path="res://src/globe.gd" id="1_ofnld"]
@@ -9,10 +9,13 @@
 [ext_resource type="Theme" uid="uid://bwjbjq5wytn2g" path="res://assets/themes/base_theme.tres" id="6_uq2bt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3npwa"]
-sky_top_color = Color(0.0823529, 0, 0.709804, 1)
-ground_bottom_color = Color(0.00392157, 0, 0, 1)
-ground_horizon_color = Color(0.647059, 0.654902, 0.670588, 1)
-sun_curve = 0.135188
+sky_top_color = Color(0.00784314, 0.368627, 0.815686, 1)
+sky_horizon_color = Color(0.517647, 0.682353, 0.768627, 1)
+ground_bottom_color = Color(0.0627451, 0.0705882, 0.0784314, 1)
+ground_horizon_color = Color(0.517647, 0.682353, 0.768627, 1)
+ground_curve = 0.049246
+sun_angle_max = 96.07
+sun_curve = 0.184672
 
 [sub_resource type="Sky" id="Sky_5s1ka"]
 sky_material = SubResource("ProceduralSkyMaterial_3npwa")
@@ -29,6 +32,9 @@ fog_light_energy = 0.05
 fog_sun_scatter = 0.38
 fog_sky_affect = 0.284
 volumetric_fog_density = 0.4395
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duya0"]
+bg_color = Color(0, 0, 0, 0.709804)
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_ofnld")
@@ -85,24 +91,25 @@ offset_top = 28.0
 offset_right = 388.0
 offset_bottom = 147.0
 size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_duya0")
 
 [node name="CityLabel" type="RichTextLabel" parent="UI/InfoPanel/NamePanel"]
 layout_mode = 2
 offset_left = 19.0
 offset_top = 1.0
-offset_right = 479.0
-offset_bottom = 115.0
+offset_right = 358.0
+offset_bottom = 46.0
 theme = ExtResource("6_uq2bt")
 text = "London"
 
 [node name="CountryLabel" type="RichTextLabel" parent="UI/InfoPanel/NamePanel"]
 layout_mode = 0
-offset_left = 26.0
-offset_top = 64.0
-offset_right = 598.0
-offset_bottom = 119.0
+offset_left = 21.0
+offset_top = 43.0
+offset_right = 347.0
+offset_bottom = 98.0
 theme = ExtResource("6_uq2bt")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 19
 text = "United Kingdom"
 
 [node name="CostContainer" type="Panel" parent="UI/InfoPanel"]
@@ -112,7 +119,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -364.0
+offset_left = -480.0
 offset_top = 31.0
 offset_right = -18.0
 offset_bottom = -20.0
@@ -125,13 +132,14 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -162.0
+offset_left = -190.0
 offset_top = 18.0
-offset_right = 180.0
+offset_right = 205.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
+theme_override_constants/separation = 0
 
 [node name="CostLabel" type="RichTextLabel" parent="UI/InfoPanel/CostContainer/CostPanel"]
 layout_mode = 2

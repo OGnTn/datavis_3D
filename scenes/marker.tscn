@@ -9,6 +9,7 @@
 radius = 0.503329
 
 [node name="marker" type="Node3D"]
+transform = Transform3D(0.539, 0, 0, 0, 0.539, 0, 0, 0, 0.539, 0, 0, 0)
 script = ExtResource("1_tn3y7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

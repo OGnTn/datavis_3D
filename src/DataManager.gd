@@ -5,7 +5,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var data = load_csv_file("res://data/processed_data_full7.csv")
+	var data = load_csv_file("res://data/processed_data_full8.csv")
 	var ranges = load_ranges("res://data/processed_data_ranges.csv")
 	globe.ranges = ranges
 	#await get_tree().createtimer(5).timeout
@@ -55,6 +55,6 @@ func load_ranges(path):
 			var clean = lines[i].get_slice("\n", 1)
 			clean = clean.split(",")
 			var key = clean[0]
-			var values = [float(clean[1]), float(clean[2])]
+			var values = [float(clean[1]), float(clean[2]), float(clean[3])]
 			data[key] = values
 	return data

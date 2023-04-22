@@ -6,10 +6,10 @@ uid="uid://btfpjfwcm1x34"
 
 [deps]
 
-files=["res://data/processed_data_ranges.max.translation", "res://data/processed_data_ranges.min.translation"]
+files=["res://data/processed_data_ranges.max.translation", "res://data/processed_data_ranges.min.translation", "res://data/processed_data_ranges.avg.translation"]
 
 source_file="res://data/processed_data_ranges.csv"
-dest_files=["res://data/processed_data_ranges.max.translation", "res://data/processed_data_ranges.min.translation"]
+dest_files=["res://data/processed_data_ranges.max.translation", "res://data/processed_data_ranges.min.translation", "res://data/processed_data_ranges.avg.translation"]
 
 [params]
 
