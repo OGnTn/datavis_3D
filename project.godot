@@ -13,6 +13,9 @@ config_version=5
 config/name="Datavis"
 run/main_scene="res://scenes/world.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [editor]
@@ -39,3 +42,5 @@ Interact={
 [rendering]
 
 renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_3d=3
+anti_aliasing/quality/screen_space_aa=1

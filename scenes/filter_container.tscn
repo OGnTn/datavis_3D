@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu711q1w4phgh"]
+[gd_scene load_steps=3 format=3 uid="uid://cama704hoflof"]
 
+[ext_resource type="Script" path="res://src/filter_container.gd" id="1_ly2k4"]
 [ext_resource type="Theme" uid="uid://bwjbjq5wytn2g" path="res://assets/themes/base_theme.tres" id="1_vxoxj"]
-[ext_resource type="Script" path="res://scenes/filter_container.gd" id="1_wmm7n"]
 
 [node name="InfoContainer" type="HBoxContainer"]
 anchors_preset = 15
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.6
-script = ExtResource("1_wmm7n")
+script = ExtResource("1_ly2k4")
 
 [node name="InfoLabel" type="Label" parent="."]
 layout_mode = 2
